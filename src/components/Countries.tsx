@@ -14,8 +14,8 @@ const Countries = () => {
   }, [data])
   return (
     <div>
-      <ul className="m-8 flex items-center justify-center gap-4 rounded-2xl bg-slate-500 p-8 text-2xl text-slate-50">
-        <span>1</span>
+      <ul className="m-4 flex flex-col items-center justify-center gap-4 rounded-2xl bg-slate-500 p-8 text-2xl text-slate-50 lg:m-8 lg:flex-row">
+        <span className="hidden lg:flex">1</span>
         <div className="relative">
           <span className="absolute bottom-6 left-1/2 -translate-x-1/2 transform">
             {range}
@@ -28,10 +28,10 @@ const Countries = () => {
             onChange={(e) => setRange(parseInt(e.target.value))}
           />
         </div>
-        <span>250</span>
+        <span className="hidden lg:flex">250</span>
         {Continents.map((continent) => {
           return (
-            <li className="mx-8 flex items-center justify-center gap-2">
+            <li className="flex items-center justify-center gap-2 lg:mx-8">
               <input
                 type="radio"
                 name="ContinentRadio"

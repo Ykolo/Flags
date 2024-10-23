@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { cn } from '../libs/utils'
 
 const Article = ({ article }: { article: any }) => {
   const [isEditing, setIsEditing] = useState(false)
@@ -32,10 +33,12 @@ const Article = ({ article }: { article: any }) => {
     })
   }
   return (
-    <div>
-      <div>
+    <div className={cn('mx-40 mt-16 rounded-xl bg-slate-50 text-xl')}>
+      <div className="relative">
         <h3>{article.author}</h3>
-        <em>Posté le {dateFormater(article.date)} </em>
+        <span className={cn('left-1/5 translate-x-1/4 transform text-lg')}>
+          Posté le {dateFormater(article.date)}{' '}
+        </span>
       </div>
       {isEditing ? (
         <textarea
@@ -48,9 +51,23 @@ const Article = ({ article }: { article: any }) => {
       )}
       <div>
         {isEditing ? (
-          <button onClick={() => handleEdit()}>Save</button>
+          <button
+            onClick={() => handleEdit()}
+            className={cn(
+              'm-4 rounded-xl border-2 border-slate-950 bg-slate-950 px-4 py-2 text-slate-50 hover:bg-slate-50 hover:text-slate-950'
+            )}
+          >
+            Save
+          </button>
         ) : (
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button
+            onClick={() => setIsEditing(true)}
+            className={cn(
+              'm-4 rounded-xl border-2 border-slate-950 bg-slate-950 px-4 py-2 text-slate-50 hover:bg-slate-50 hover:text-slate-950'
+            )}
+          >
+            Edit
+          </button>
         )}
         <button
           onClick={() =>

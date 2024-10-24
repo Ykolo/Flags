@@ -15,33 +15,35 @@ const Blog = () => {
       setBlogData(res.data)
     })
   }
+
   useEffect(() => {
     getData()
   }, [])
 
   const handleSubmit = (e: any) => {
-    e.preventDefault()
-    content.length < 140
-      ? setError(true)
-      : axios.post('http://localhost:3004/articles', {
-          author,
-          content,
-          date: Date.now(),
-        }),
+    e.preventDefault() // Correction ici
+    if (content.length < 140) {
+      setError(true)
+    } else {
+      axios.post('http://localhost:3004/articles', {
+        author,
+        content,
+        date: Date.now(),
+      })
       setError(false)
-    setAuthor('')
-    setContent('')
-    getData()
+      setAuthor('')
+      setContent('')
+      getData()
+    }
   }
+
   return (
     <div>
       <Navigation />
       <div className={cn('flex', 'flex-col', 'items-center', 'justify-center')}>
         <h1 className={cn('text-7xl')}>Blog</h1>
         <form
-          onSubmit={(e) => {
-            handleSubmit(e)
-          }}
+          onSubmit={handleSubmit}
           className={cn(
             'mt-16',
             'flex',
@@ -59,9 +61,7 @@ const Blog = () => {
           />
           <textarea
             placeholder="Message"
-            onChange={(e) => {
-              setContent(e.target.value)
-            }}
+            onChange={(e) => setContent(e.target.value)}
             className={cn(
               error ? 'border-red-500' : 'border-gray-300',
               'h-40',
@@ -81,13 +81,16 @@ const Blog = () => {
             value="Envoyer"
             className={cn(
               'mt-4',
+              'text-xl',
               'text-slate-50',
               'rounded-3xl',
               'border-2',
               'border-slate-950',
               'bg-slate-950',
               'px-10',
-              'py-4'
+              'py-4',
+              'hover:bg-slate-50',
+              'hover:text-slate-950'
             )}
           />
         </form>

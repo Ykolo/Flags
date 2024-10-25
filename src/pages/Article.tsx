@@ -23,19 +23,25 @@ const Article = ({ article }: { article: any }) => {
       date: article.date,
       updatedDate: Date.now(),
     }
-    axios.put(`http://localhost:3004/articles/${article.id}`, data).then(() => {
-      setIsEditing(false);
-      setEditCotent("")
-    }).catch((error) => {
-      console.log("Erreur lors de l'edit", error);
-    })
+    axios
+      .put(`http://localhost:3004/articles/${article.id}`, data)
+      .then(() => {
+        setIsEditing(false)
+        setEditCotent('')
+      })
+      .catch((error) => {
+        console.log("Erreur lors de l'edit", error)
+      })
   }
   const handleDelete = () => {
-    axios.delete(`http://localhost:3004/articles/${article.id}`).then(() => {
-      window.location.reload()
-    }).catch((error) => {
-      console.log("Erreur lors de la suppression", error);
-    })
+    axios
+      .delete(`http://localhost:3004/articles/${article.id}`)
+      .then(() => {
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.log('Erreur lors de la suppression', error)
+      })
   }
   return (
     <div className={cn('mx-40 mt-16 rounded-xl bg-slate-50 text-xl')}>
@@ -50,7 +56,7 @@ const Article = ({ article }: { article: any }) => {
           defaultValue={editContent ? editContent : article.content}
           onChange={(e) => setEditCotent(e.target.value)}
           autoFocus
-          className={cn("w-11/12 h-32 ml-16")}
+          className={cn('ml-16 h-32 w-11/12')}
         />
       ) : (
         <p className={cn('mx-4')}>

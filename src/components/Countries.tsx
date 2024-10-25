@@ -123,7 +123,7 @@ const Countries = () => {
           'lg:text-2xl',
           'xl:mx-40',
           'xl:text-lg',
-          'xl:grid-cols-8'
+          'xl:grid-cols-6'
         )}
       >
         {data
